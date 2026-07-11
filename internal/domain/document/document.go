@@ -17,10 +17,6 @@ type Document struct {
 	content string
 }
 
-func (d *Document) ID() string {
-	return d.id
-}
-
 func New(name, content string) (*Document, error) {
 	if name == "" {
 		return nil, ErrEmptyName
