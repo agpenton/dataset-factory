@@ -149,3 +149,36 @@ func TestDocument_WithMetadata(t *testing.T) {
 		t.Fatal("expected original document to remain unchanged")
 	}
 }
+
+func TestDocument_Metadata(t *testing.T) {
+	doc, err := document.New(
+		"README.md",
+		"# Dataset Factory",
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	meta := document.NewMetadata(
+		"docs/README.md",
+		"text/markdown",
+	)
+
+	doc = doc.WithMetadata(meta)
+
+	got := doc.Metadata()
+
+	if got.Source() != "docs/README.md" {
+		t.Fatalf("expected source %q, got %q",
+			"docs/README.md",
+			got.Source(),
+		)
+	}
+
+	if got.MediaType() != "text/markdown" {
+		t.Fatalf("expected media type %q, got %q",
+			"text/markdown",
+			got.MediaType(),
+		)
+	}
+}
