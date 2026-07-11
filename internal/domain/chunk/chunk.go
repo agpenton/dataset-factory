@@ -6,14 +6,6 @@ import (
 	"errors"
 )
 
-package chunk
-
-import (
-"crypto/sha256"
-"encoding/hex"
-"errors"
-)
-
 var (
 	ErrEmptyDocumentID = errors.New("document ID cannot be empty")
 	ErrEmptyContent    = errors.New("content cannot be empty")
