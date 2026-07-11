@@ -17,6 +17,10 @@ type Document struct {
 	content string
 }
 
+func (d *Document) ID() string {
+	return d.id
+}
+
 func New(name, content string) (*Document, error) {
 	if name == "" {
 		return nil, ErrEmptyName
@@ -26,11 +30,14 @@ func New(name, content string) (*Document, error) {
 		return nil, ErrEmptyContent
 	}
 
-	return &Document{
-		id:      generateID(name, content),
+	doc := &Document{
 		name:    name,
 		content: content,
-	}, nil
+	}
+
+	doc.id = computeID(doc)
+
+	return doc, nil
 }
 
 func (d *Document) ID() string {
