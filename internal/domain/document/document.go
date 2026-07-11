@@ -12,9 +12,10 @@ var (
 )
 
 type Document struct {
-	id      string
-	name    string
-	content string
+	id       string
+	name     string
+	content  string
+	metadata Metadata
 }
 
 func New(name, content string) (*Document, error) {
@@ -63,4 +64,13 @@ func (d *Document) Validate() error {
 func generateID(name, content string) string {
 	hash := sha256.Sum256([]byte(name + "\n" + content))
 	return hex.EncodeToString(hash[:])
+}
+
+func (d *Document) Metadata() Metadata {
+	return d.metadata
+}
+func (d *Document) WithMetadata(metadata Metadata) *Document {
+	copy := *d
+	copy.metadata = metadata
+	return &copy
 }

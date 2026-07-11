@@ -125,3 +125,27 @@ func TestDocument_IDIsNeverEmpty(t *testing.T) {
 		t.Fatal("expected non-empty ID")
 	}
 }
+func TestDocument_WithMetadata(t *testing.T) {
+	doc, err := document.New(
+		"README.md",
+		"# Dataset Factory",
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	meta := document.NewMetadata(
+		"docs/README.md",
+		"text/markdown",
+	)
+
+	updated := doc.WithMetadata(meta)
+
+	if updated.Metadata() != meta {
+		t.Fatal("expected metadata to be attached")
+	}
+
+	if doc.Metadata() == meta {
+		t.Fatal("expected original document to remain unchanged")
+	}
+}
