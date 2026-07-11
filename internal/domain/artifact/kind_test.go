@@ -1,7 +1,7 @@
-KindDocument.String()
+package artifact_test
 
-KindChunk.String()
+import "testing"
 
-ParseKind()
-
-Validate()
+func TestPlaceholder(t *testing.T) {
+	t.Skip("artifact package not implemented yet")
+}

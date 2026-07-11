@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/agpenton/dataset-factory/internal/app"
+	"github.com/agpenton/dataset-factory/internal/bootstrap"
 )
 
 func main() {
