@@ -3,6 +3,7 @@ package run
 import (
 	"context"
 
+	"github.com/agpenton/dataset-factory/internal/application/dataset"
 	"github.com/agpenton/dataset-factory/internal/application/export"
 	apprecipe "github.com/agpenton/dataset-factory/internal/application/recipe"
 )
@@ -32,7 +33,10 @@ func (s *Service) Run(
 	// Temporary implementation.
 	// This will be replaced by the recipe execution engine.
 	records := []string{
-		`{"messages":[]}`,
+		dataset.BuildRecord(
+			"Example instruction",
+			"Example answer",
+		),
 	}
 
 	return export.JSONL(outputPath, records)
