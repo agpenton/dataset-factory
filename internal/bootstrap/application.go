@@ -4,6 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+
+	apprecipe "github.com/agpenton/dataset-factory/internal/application/recipe"
+	generatorregistry "github.com/agpenton/dataset-factory/internal/generator/registry"
 )
 
 type Application struct {
@@ -53,11 +56,25 @@ func (a *Application) Run(ctx context.Context, args []string) error {
 			return nil
 		}
 
+		r, err := apprecipe.Load(args[2])
+		if err != nil {
+			return err
+		}
+
+		if err := apprecipe.Validate(r); err != nil {
+			return err
+		}
+
+		g, err := generatorregistry.New(r)
+		if err != nil {
+			return err
+		}
+
 		rendered, response, err := a.container.PromptService.Execute(
 			ctx,
 			args[2],
 			args[4],
-			a.container.RunService.Generator(),
+			g,
 		)
 		if err != nil {
 			return err

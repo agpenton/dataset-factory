@@ -7,6 +7,7 @@ var (
 	ErrMissingKind       = errors.New("missing kind")
 	ErrMissingName       = errors.New("missing metadata.name")
 	ErrMissingVersion    = errors.New("missing metadata.version")
+	ErrMissingPipeline   = errors.New("missing pipeline.type")
 )
 
 func Validate(r *Recipe) error {
@@ -39,6 +40,25 @@ func Validate(r *Recipe) error {
 	}
 	if r.Prompt.Template == "" {
 		return errors.New("missing prompt.template")
+	}
+	if r.Pipeline.Type == "" {
+		return ErrMissingPipeline
+	}
+
+	if r.Output.Type == "" {
+		return errors.New("missing output.type")
+	}
+
+	if r.Generator.Provider == "" {
+		return errors.New("missing generator.provider")
+	}
+
+	if r.Generator.Endpoint == "" {
+		return errors.New("missing generator.endpoint")
+	}
+
+	if r.Generator.Model == "" {
+		return errors.New("missing generator.model")
 	}
 
 	return nil

@@ -5,6 +5,20 @@ metadata:
   name: instruction-from-answer
 
 
+pipeline:
+  type: instruction-from-answer
+
+output:
+  type: chatml
+
 input:
   type: jsonl
-  path: ../../input/testdata/answers.jsonl
+  path: test.jsonl
+
+prompt:
+  template: prompt.tmpl
+
+generator:
+  provider: ollama
+  endpoint: http://localhost:11434
+  model: qwen3:8b-q4_K_M

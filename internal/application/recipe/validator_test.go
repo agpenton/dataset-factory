@@ -48,3 +48,27 @@ func TestValidateMissingVersion(t *testing.T) {
 		t.Fatal("expected validation error")
 	}
 }
+
+func validRecipe() *recipe.Recipe {
+	return &recipe.Recipe{
+		APIVersion: "datasetfactory.io/v1alpha1",
+		Kind:       "Recipe",
+		Metadata: recipe.Metadata{
+			Name:    "minimal",
+			Version: "v1",
+		},
+		Pipeline: recipe.Pipeline{
+			Type: "instruction-from-answer",
+		},
+		Input: recipe.Input{
+			Type: "jsonl",
+			Path: "test.jsonl",
+		},
+		Prompt: recipe.Prompt{
+			Template: "prompt.tmpl",
+		},
+		Output: recipe.Output{
+			Type: "chatml",
+		},
+	}
+}

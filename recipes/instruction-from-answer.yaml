@@ -5,6 +5,14 @@ metadata:
   name: instruction-from-answer
   version: v1
 
+pipeline:
+  type: instruction-from-answer
+
+generator:
+  provider: ollama
+  endpoint: http://localhost:11434
+  model: qwen3:8b-q4_K_M
+
 input:
   type: jsonl
   path: ../testdata/instruction-from-answer.jsonl

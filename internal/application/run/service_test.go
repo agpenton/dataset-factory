@@ -8,15 +8,15 @@ import (
 	"testing"
 
 	"github.com/agpenton/dataset-factory/internal/application/run"
-	"github.com/agpenton/dataset-factory/internal/generator/fake"
 )
 
 func TestRunRecipeProducesDataset(t *testing.T) {
 	dir := t.TempDir()
 
-	service := run.New(
-		fake.New("What is Kubernetes?"),
-	)
+	//service := run.New(
+	//	fake.New("What is Kubernetes?"),
+	//)
+	service := run.New()
 
 	output := filepath.Join(dir, "dataset.jsonl")
 
