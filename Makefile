@@ -23,10 +23,13 @@ race:
 lint:
 	golangci-lint run
 
-check: fmt vet test race
-
 tidy:
 	go mod tidy
 
 clean:
 	rm -rf bin
+
+build:
+	go build ./cmd/dataset-factory
+
+check: fmt vet test race build
