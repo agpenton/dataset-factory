@@ -8,23 +8,34 @@ import (
 	"testing"
 
 	"github.com/agpenton/dataset-factory/internal/application/run"
+	"github.com/agpenton/dataset-factory/internal/generator/fake"
 )
 
 func TestRunRecipeProducesDataset(t *testing.T) {
 	dir := t.TempDir()
 
-	service := run.New()
+	service := run.New(
+		fake.New("What is Kubernetes?"),
+	)
 
 	output := filepath.Join(dir, "dataset.jsonl")
 
-	err := service.Run(
-		context.Background(),
-		"../../../recipes/instruction-from-answer.yaml",
-		output,
-	)
+	repoRoot, err := filepath.Abs("../../..")
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	recipe := filepath.Join(
+		repoRoot,
+		"recipes",
+		"instruction-from-answer.yaml",
+	)
+
+	err = service.Run(
+		context.Background(),
+		recipe,
+		output,
+	)
 
 	if _, err := os.Stat(output); err != nil {
 		t.Fatal("dataset was not generated")

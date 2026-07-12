@@ -13,7 +13,7 @@ func TestGenerate(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		w.Write([]byte(`{
+		_, _ = w.Write([]byte(`{
 			"response":"What is Kubernetes?",
 			"done":true
 		}`))
@@ -31,6 +31,6 @@ func TestGenerate(t *testing.T) {
 	}
 
 	if answer != "What is Kubernetes?" {
-		t.Fatal(answer)
+		t.Fatalf("unexpected answer %q", answer)
 	}
 }

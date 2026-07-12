@@ -5,8 +5,12 @@ type Recipe struct {
 	Kind       string   `yaml:"kind"`
 	Metadata   Metadata `yaml:"metadata"`
 	Input      Input    `yaml:"input"`
+	Prompt     Prompt   `yaml:"prompt"`
 }
 
+type Prompt struct {
+	Template string `yaml:"template"`
+}
 type Metadata struct {
 	Name    string `yaml:"name"`
 	Version string `yaml:"version"`

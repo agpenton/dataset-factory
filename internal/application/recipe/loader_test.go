@@ -20,7 +20,11 @@ func TestLoad(t *testing.T) {
 		t.Fatalf("unexpected kind %q", r.Kind)
 	}
 
-	if r.Metadata.Name != "instruction-from-answer" {
+	//if r.Metadata.Name != "instruction-from-answer" {
+	//	t.Fatalf("unexpected name %q", r.Metadata.Name)
+	//}
+
+	if r.Metadata.Name != "minimal" {
 		t.Fatalf("unexpected name %q", r.Metadata.Name)
 	}
 

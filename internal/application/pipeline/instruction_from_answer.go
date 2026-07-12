@@ -10,12 +10,20 @@ import (
 )
 
 type InstructionFromAnswer struct {
-	generator generator.Generator
+	generator    generator.Generator
+	templatePath string
+	renderer     *prompt.Renderer
 }
 
-func NewInstructionFromAnswer(g generator.Generator) *InstructionFromAnswer {
+func NewInstructionFromAnswer(
+	g generator.Generator,
+	templatePath string,
+) *InstructionFromAnswer {
+
 	return &InstructionFromAnswer{
-		generator: g,
+		generator:    g,
+		templatePath: templatePath,
+		renderer:     prompt.New(),
 	}
 }
 
@@ -24,7 +32,18 @@ func (p *InstructionFromAnswer) Run(
 	answer string,
 ) (string, error) {
 
-	promptText := prompt.BuildInstructionFromAnswer(answer)
+	promptText, err := p.renderer.Render(
+		p.templatePath,
+		prompt.TemplateData{
+			Answer: answer,
+		},
+	)
+	if err != nil {
+		return "", err
+	}
+	if err != nil {
+		return "", err
+	}
 
 	instruction, err := p.generator.Generate(ctx, promptText)
 	if err != nil {

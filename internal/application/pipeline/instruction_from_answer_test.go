@@ -11,7 +11,10 @@ import (
 func TestInstructionFromAnswerPipeline(t *testing.T) {
 	g := fake.New("What is Kubernetes?")
 
-	p := pipeline.NewInstructionFromAnswer(g)
+	p := pipeline.NewInstructionFromAnswer(
+		g,
+		"testdata/instruction-from-answer.tmpl",
+	)
 
 	record, err := p.Run(
 		context.Background(),

@@ -37,6 +37,9 @@ func Validate(r *Recipe) error {
 	if r.Input.Path == "" {
 		return errors.New("missing input.path")
 	}
+	if r.Prompt.Template == "" {
+		return errors.New("missing prompt.template")
+	}
 
 	return nil
 }

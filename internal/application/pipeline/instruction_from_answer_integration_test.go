@@ -17,7 +17,10 @@ func TestGenerateDatasetFromAnswers(t *testing.T) {
 
 	g := fake.New("What is Kubernetes?")
 
-	p := pipeline.NewInstructionFromAnswer(g)
+	p := pipeline.NewInstructionFromAnswer(
+		g,
+		"testdata/instruction-from-answer.tmpl",
+	)
 
 	output, err := p.RunAll(context.Background(), records)
 	if err != nil {

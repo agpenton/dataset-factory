@@ -7,4 +7,10 @@ metadata:
 
 input:
   type: jsonl
-  path: ../testdata/answers.jsonl
+  path: ../testdata/instruction-from-answer.jsonl
+
+prompt:
+  template: ../prompts/instruction-from-answer.tmpl
+
+output:
+  type: chatml
