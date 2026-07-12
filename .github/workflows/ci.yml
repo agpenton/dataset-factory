@@ -30,7 +30,10 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      - name: Verify go.mod is clean
+      - name: Download modules
+        run: go mod download
+
+      - name: Verify module files
         run: |
           go mod tidy
           git diff --exit-code
