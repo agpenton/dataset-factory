@@ -1,0 +1,5 @@
+apiVersion: datasetfactory.io/v1alpha1
+kind: Recipe
+
+metadata:
+  version: v1

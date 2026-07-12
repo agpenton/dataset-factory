@@ -1,0 +1,5 @@
+kind: Recipe
+
+metadata:
+  name: instruction-from-answer
+  version: v1
