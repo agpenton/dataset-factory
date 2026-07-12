@@ -8,12 +8,9 @@ import (
 )
 
 func TestUnknownCommand(t *testing.T) {
-	app, err := bootstrap.New()
-	if err != nil {
-		t.Fatal(err)
-	}
+	app := bootstrap.New()
 
-	err = app.Run(
+	err := app.Run(
 		context.Background(),
 		[]string{"dataset-factory", "unknown"},
 	)
@@ -24,12 +21,9 @@ func TestUnknownCommand(t *testing.T) {
 }
 
 func TestMissingRunArguments(t *testing.T) {
-	app, err := bootstrap.New()
-	if err != nil {
-		t.Fatal(err)
-	}
+	app := bootstrap.New()
 
-	err = app.Run(
+	err := app.Run(
 		context.Background(),
 		[]string{"dataset-factory", "run"},
 	)

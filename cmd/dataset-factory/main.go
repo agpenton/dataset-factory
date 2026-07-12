@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 
 	"github.com/agpenton/dataset-factory/internal/bootstrap"
 )
@@ -10,12 +11,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	application, err := app.New()
-	if err != nil {
-		log.Fatal(err)
-	}
+	application := bootstrap.New()
 
-	if err := application.Run(ctx); err != nil {
+	if err := application.Run(ctx, os.Args); err != nil {
 		log.Fatal(err)
 	}
 }

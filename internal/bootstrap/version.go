@@ -1,4 +1,4 @@
-package app
+package bootstrap
 
 const (
 	Name    = "Dataset Factory"
