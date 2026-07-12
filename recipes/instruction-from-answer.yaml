@@ -1,0 +1,12 @@
+apiVersion: datasetfactory.io/v1alpha1
+kind: Recipe
+
+metadata:
+  name: instruction-from-answer
+  version: v1
+
+input:
+  type: jsonl
+
+output:
+  type: chatml
