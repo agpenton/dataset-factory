@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/agpenton/dataset-factory/internal/application/dataset"
+	"github.com/agpenton/dataset-factory/internal/application/input"
 	"github.com/agpenton/dataset-factory/internal/application/prompt"
 	"github.com/agpenton/dataset-factory/internal/generator"
 )
@@ -34,4 +35,23 @@ func (p *InstructionFromAnswer) Run(
 		instruction,
 		answer,
 	), nil
+}
+
+func (p *InstructionFromAnswer) RunAll(
+	ctx context.Context,
+	records []input.Record,
+) ([]string, error) {
+
+	output := make([]string, 0, len(records))
+
+	for _, record := range records {
+		jsonl, err := p.Run(ctx, record.Answer)
+		if err != nil {
+			return nil, err
+		}
+
+		output = append(output, jsonl)
+	}
+
+	return output, nil
 }
