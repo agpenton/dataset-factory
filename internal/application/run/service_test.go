@@ -7,12 +7,12 @@ import (
 	"github.com/agpenton/dataset-factory/internal/application/run"
 )
 
-func TestService_RunRecipe(t *testing.T) {
+func TestRunRecipe(t *testing.T) {
 	service := run.New()
 
 	err := service.Run(
 		context.Background(),
-		"testdata/instruction-from-answer.yaml",
+		"../recipe/testdata/minimal.yaml",
 	)
 
 	if err != nil {
