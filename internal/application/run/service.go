@@ -1,6 +1,10 @@
 package run
 
-import "context"
+import (
+	"context"
+
+	apprecipe "github.com/agpenton/dataset-factory/internal/application/recipe"
+)
 
 type Service struct{}
 
@@ -10,7 +14,11 @@ func New() *Service {
 
 func (s *Service) Run(ctx context.Context, recipePath string) error {
 	_ = ctx
-	_ = recipePath
 
-	return nil
+	r, err := apprecipe.Load(recipePath)
+	if err != nil {
+		return err
+	}
+
+	return apprecipe.Validate(r)
 }
