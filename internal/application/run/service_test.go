@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/agpenton/dataset-factory/internal/application/run"
@@ -18,7 +19,7 @@ func TestRunRecipeProducesDataset(t *testing.T) {
 
 	err := service.Run(
 		context.Background(),
-		"../recipe/testdata/minimal.yaml",
+		"../../../recipes/instruction-from-answer.yaml",
 		output,
 	)
 	if err != nil {
@@ -27,5 +28,15 @@ func TestRunRecipeProducesDataset(t *testing.T) {
 
 	if _, err := os.Stat(output); err != nil {
 		t.Fatal("dataset was not generated")
+	}
+	data, err := os.ReadFile(output)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	lines := strings.Split(strings.TrimSpace(string(data)), "\n")
+
+	if len(lines) != 2 {
+		t.Fatalf("expected 2 dataset records, got %d", len(lines))
 	}
 }

@@ -3,3 +3,8 @@ kind: Recipe
 
 metadata:
   name: instruction-from-answer
+
+
+input:
+  type: jsonl
+  path: ../../input/testdata/answers.jsonl

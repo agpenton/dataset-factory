@@ -30,5 +30,13 @@ func Validate(r *Recipe) error {
 		return ErrMissingVersion
 	}
 
+	if r.Input.Type == "" {
+		return errors.New("missing input.type")
+	}
+
+	if r.Input.Path == "" {
+		return errors.New("missing input.path")
+	}
+
 	return nil
 }

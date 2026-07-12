@@ -7,6 +7,4 @@ metadata:
 
 input:
   type: jsonl
-
-output:
-  type: chatml
+  path: ../testdata/answers.jsonl

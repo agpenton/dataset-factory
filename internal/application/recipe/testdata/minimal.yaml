@@ -4,3 +4,7 @@ kind: Recipe
 metadata:
   name: instruction-from-answer
   version: v1
+
+input:
+  type: jsonl
+  path: ../../input/testdata/answers.jsonl

@@ -3,3 +3,8 @@ kind: Recipe
 
 metadata:
   version: v1
+
+
+input:
+  type: jsonl
+  path: ../../input/testdata/answers.jsonl
